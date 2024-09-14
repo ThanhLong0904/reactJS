@@ -1,0 +1,13 @@
+.root {
+  padding-top: 32px;
+
+  & .avatar {
+    background: red;
+    margin: 0 auto;
+  }
+
+  .title {
+    text-align: center;
+    margin: 16px 0;
+  }
+}

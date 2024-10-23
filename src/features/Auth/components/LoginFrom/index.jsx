@@ -12,14 +12,14 @@ function LoginForm(props) {
 
   const schema = yup
     .object({
-      identifier: yup.string().required('Please enter your email').email('please enter a valid email'),
+      email: yup.string().required('Please enter your email').email('please enter a valid email'),
       password: yup.string().required('Please enter your password'),
     })
     .required();
 
   const form = useForm({
     defaultValues: {
-      identifier: '',
+      email: '',
       password: '',
     },
     resolver: yupResolver(schema),
@@ -43,7 +43,7 @@ function LoginForm(props) {
         Sign in
       </Typography>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <InputField name="identifier" label="Email" form={form} />
+        <InputField name="email" label="Email" form={form} />
         <PasswordField name="password" label="Password" form={form} />
         <Button
           disabled={isSubmitting}

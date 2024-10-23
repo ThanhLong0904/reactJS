@@ -22,9 +22,7 @@ export const login = createAsyncThunk('user/login', async (payload) => {
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    current:
-      // JSON.parse(localStorage.getItem(StorageKeys.USER)) ||
-      {},
+    current: JSON.parse(localStorage.getItem(StorageKeys.USER)) || {},
     settings: {},
   },
   reducers: {},

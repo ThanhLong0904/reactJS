@@ -1,13 +1,7 @@
 import axios from 'axios';
 
-// const axiosClient = axios.create({
-//   baseURL: 'https://jsonplaceholder.typicode.com/',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-// });
 const axiosClient = axios.create({
-  baseURL: 'https://api.ezfrontend.com/',
+  baseURL: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -37,13 +31,14 @@ axiosClient.interceptors.response.use(
     // Do something with response error
     const { config, status, data } = error.response;
     const URL = ['/auth/local/register', '/auth/local'];
-    if (URL.includes(config.url) && status === 400) {
-      const errorList = data.data || [];
-      const firstError = errorList.length > 0 ? errorList[0] : {};
-      const messageList = firstError.messages || [];
-      const firstMessages = messageList.length > 0 ? messageList[0] : {};
-      throw new Error(firstMessages.message);
+    if ((URL.includes(config.url) && status === 400) || status === 404 || status === 401) {
+      // const errorList = data.data || [];
+      // const firstError = errorList.length > 0 ? errorList[0] : {};
+      // const messageList = firstError.messages || [];
+      // const firstMessages = messageList.length > 0 ? messageList[0] : {};
+      throw new Error(data.message);
     }
+    console.log('error', error);
     return Promise.reject(error);
   },
 );

@@ -11,9 +11,10 @@ import Typography from '@mui/material/Typography';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import './styles.scss';
+import { logout } from 'features/Auth/userSlice';
 
 const MODE = {
   LOGIN: 'login',
@@ -21,12 +22,12 @@ const MODE = {
 };
 
 export default function Header() {
+  const dispatch = useDispatch();
   const loggerInUser = useSelector((state) => state.user.current);
   const IsLogger = !!loggerInUser.id;
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.LOGIN);
   const [anchorEl, setAnchorEl] = useState(null);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -41,6 +42,11 @@ export default function Header() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    const action = logout();
+    dispatch(action);
   };
 
   const isRegister = mode === MODE.REGISTER;
@@ -87,7 +93,7 @@ export default function Header() {
         }}
       >
         <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-        <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
       </Menu>
       <Dialog open={open} onClose={handleClose} disableEscapeKeyDown={false}>
         <DialogContent>

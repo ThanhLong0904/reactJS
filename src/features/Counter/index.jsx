@@ -4,8 +4,7 @@ import { decrease, increase } from './counterSlice';
 
 function CounterFeature() {
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.counter);
-
+  const count = useSelector((state) => state.count);
   const handleIncreaseOnClick = () => {
     const action = increase();
     dispatch(action);

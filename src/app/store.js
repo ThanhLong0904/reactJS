@@ -3,6 +3,7 @@ import counterReducer from '../features/Counter/counterSlice';
 import userSlice from '../features/Auth/userSlice';
 
 const rootReducer = {
+  // counterReducer là reducer trong counterSlice
   count: counterReducer,
   user: userSlice,
 };

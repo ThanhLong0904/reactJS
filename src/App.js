@@ -1,7 +1,7 @@
 import Header from 'components/Header';
+import ProductFeature from 'features/Product';
 import { useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import productsApi from './api/productApi';
+import { Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
@@ -26,6 +26,7 @@ function App() {
         <Route path="/" element={<CounterFeature />}></Route>
         <Route path="/todos/*" element={<TodoFeature />}></Route>
         <Route path="/albums" element={<AlbumFeature />}></Route>
+        <Route path="/product/*" element={<ProductFeature />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

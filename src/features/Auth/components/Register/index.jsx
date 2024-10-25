@@ -1,6 +1,7 @@
 import { register } from 'features/Auth/userSlice';
 import { useDispatch } from 'react-redux';
 import RegisterForm from '../RegisterForm';
+// useSnackbar của MUI
 import { useSnackbar } from 'notistack';
 
 function Register(props) {
@@ -21,6 +22,7 @@ function Register(props) {
       }
     } catch (err) {
       console.log('failed to register', err);
+      // err này ở file axiosClient.js
       enqueueSnackbar(err.message, { variant: 'error' });
     }
   };

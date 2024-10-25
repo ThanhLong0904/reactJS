@@ -14,6 +14,7 @@ function Login(props) {
       const action = login(value);
       await dispatch(action).unwrap();
       if (closeDialog) {
+        enqueueSnackbar('This is a success message!', { variant: 'success' });
         closeDialog();
       }
     } catch (err) {

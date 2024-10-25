@@ -28,6 +28,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.LOGIN);
   const [anchorEl, setAnchorEl] = useState(null);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -46,6 +47,7 @@ export default function Header() {
 
   const handleLogoutClick = () => {
     const action = logout();
+    setAnchorEl(null);
     dispatch(action);
   };
 

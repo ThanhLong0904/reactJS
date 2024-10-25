@@ -4,10 +4,12 @@ import StorageKeys from 'constants/storage-key';
 
 //acction register
 export const register = createAsyncThunk('user/register', async (payload) => {
+  // call API to register
   const data = await userApi.register(payload);
+  // save data to local storage
   localStorage.setItem(StorageKeys.TOKEN, data.jwt);
   localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user));
-
+  //  return về gì thì action.payload (extraReducers) nhận về cái đấy từ BE trả về
   return data.user;
 });
 

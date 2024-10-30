@@ -9,15 +9,17 @@ function ListPage() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // lưu ý gọi API phải đặt try catch.
-    try {
-      (async () => {
-        const { data } = await productsApi.getAll();
-        setProductList(data);
-      })();
-    } catch (error) {
-      console.log('Failed to fetch product list', error);
-    }
-    setLoading(false);
+    setTimeout(() => {
+      try {
+        (async () => {
+          const { data } = await productsApi.getAll();
+          setProductList(data);
+        })();
+      } catch (error) {
+        console.log('Failed to fetch product list', error);
+      }
+      setLoading(false);
+    }, 3000);
   }, []);
 
   return (
@@ -29,7 +31,7 @@ function ListPage() {
           </Grid>
           <Grid item sx={{ flex: '1 1 0' }}>
             <Paper elevation={0}>
-              {loading ? <ProductSkeletonList length={5} /> : <ProductList data={productList} />}
+              {loading ? <ProductSkeletonList length={10} /> : <ProductList data={productList} />}
             </Paper>
           </Grid>
         </Grid>

@@ -1,0 +1,6 @@
+.product-name {
+  white-space: nowrap; /* Không cho phép xuống dòng */
+  overflow: hidden; /* Ẩn phần nội dung không vừa */
+  text-overflow: ellipsis; /* Hiển thị dấu "..." nếu văn bản bị cắt */
+  display: block; /* Để áp dụng các thuộc tính trên */
+}

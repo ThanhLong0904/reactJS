@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import ProductSkeletonList from '../component/Skeleton';
 import ProductList from '../component/ProductList';
 import './styles.scss';
+import ProductSort from '../component/ProductSort';
 function ListPage() {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,7 @@ function ListPage() {
   const [filters, setfilters] = useState({
     _page: 1,
     _limit: 12,
+    _sortOrder: 'DESC',
   });
   useEffect(() => {
     // lưu ý gọi API phải đặt try catch.
@@ -39,6 +41,13 @@ function ListPage() {
     }));
   };
 
+  const handleSortChange = (newValue) => {
+    setfilters((prevFilters) => ({
+      ...prevFilters,
+      _sortOrder: newValue,
+    }));
+  };
+
   return (
     <Box>
       <Container>
@@ -48,6 +57,7 @@ function ListPage() {
           </Grid>
           <Grid item sx={{ flex: '1 1 0' }}>
             <Paper elevation={0}>
+              <ProductSort currentSort={filters._sortOrder} onChange={handleSortChange} />
               {loading ? <ProductSkeletonList length={12} /> : <ProductList data={productList} />}
               <Pagination
                 count={Math.ceil(pagination.total / pagination.limit)}

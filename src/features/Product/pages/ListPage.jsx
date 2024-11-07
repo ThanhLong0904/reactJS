@@ -5,6 +5,7 @@ import ProductSkeletonList from '../component/Skeleton';
 import ProductList from '../component/ProductList';
 import './styles.scss';
 import ProductSort from '../component/ProductSort';
+import ProductFilters from '../component/ProductFilters';
 function ListPage() {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,7 @@ function ListPage() {
     _limit: 12,
     _sortOrder: 'DESC',
   });
+  console.log('filters', filters);
   useEffect(() => {
     // lưu ý gọi API phải đặt try catch.
     // setTimeout(() => {
@@ -48,12 +50,21 @@ function ListPage() {
     }));
   };
 
+  const handleFiltersChange = (newFilter) => {
+    setfilters((prevFilters) => ({
+      ...prevFilters,
+      ...newFilter,
+    }));
+  };
+
   return (
     <Box>
       <Container>
         <Grid container spacing={1}>
           <Grid item sx={{ width: '250px' }}>
-            <Paper elevation={0}>left colum</Paper>
+            <Paper elevation={0}>
+              <ProductFilters filters={filters} onChange={handleFiltersChange} />
+            </Paper>
           </Grid>
           <Grid item sx={{ flex: '1 1 0' }}>
             <Paper elevation={0}>

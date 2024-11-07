@@ -38,7 +38,6 @@ axiosClient.interceptors.response.use(
       // const firstMessages = messageList.length > 0 ? messageList[0] : {};
       throw new Error(data.message);
     }
-    console.log('error', error);
     return Promise.reject(error);
   },
 );

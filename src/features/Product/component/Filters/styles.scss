@@ -1,0 +1,13 @@
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  & > li {
+    transition: all 0.25s;
+    margin-top: 8px;
+    :hover {
+      cursor: pointer;
+      color: #00b3f0;
+    }
+  }
+}

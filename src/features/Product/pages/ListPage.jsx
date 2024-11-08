@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
+import { Box, Container, Grid, Pagination, Paper, Typography } from '@mui/material';
 import productsApi from 'api/productApi';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ProductSkeletonList from '../component/Skeleton';
@@ -19,7 +19,6 @@ function ListPage() {
     _limit: 12,
     _sortOrder: 'DESC',
   });
-  console.log('filters', filters);
   useEffect(() => {
     // lưu ý gọi API phải đặt try catch.
     // setTimeout(() => {
@@ -70,6 +69,11 @@ function ListPage() {
             <Paper elevation={0}>
               <ProductSort currentSort={filters._sortOrder} onChange={handleSortChange} />
               {loading ? <ProductSkeletonList length={12} /> : <ProductList data={productList} />}
+              {productList.length === 0 && (
+                <Box>
+                  <Typography>không có sản phẩm </Typography>
+                </Box>
+              )}
               <Pagination
                 count={Math.ceil(pagination.total / pagination.limit)}
                 page={pagination.page}

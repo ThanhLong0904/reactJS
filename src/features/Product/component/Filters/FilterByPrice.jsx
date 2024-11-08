@@ -1,36 +1,73 @@
-import { Box, Button, Typography } from '@mui/material';
-import { TextField } from '@mui/material';
-
-import React, { useState } from 'react';
+import './styles.scss';
+import { useState } from 'react';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 function FilterByPrice({ onChange }) {
   const [values, setValues] = useState({
-    salePrice_gte: 0,
-    salePrice_lte: 0,
+    _minPrice: '',
+    _maxPrice: '',
   });
+
+  const formatCurrency = (value) => {
+    if (!value) return '';
+    return new Intl.NumberFormat('vi-VN', {
+      currency: 'VND',
+    }).format(value);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const numericValue = value.replace(/[^0-9]/g, '');
     setValues((prevValues) => ({
       ...prevValues,
-      [name]: value,
+      [name]: numericValue,
     }));
   };
+
   const handleSubmit = () => {
     if (!onChange) return;
-    onChange(values);
-    setValues({
-      salePrice_gte: 0,
-      salePrice_lte: 0,
+    onChange({
+      _minPrice: values._minPrice,
+      _maxPrice: values._maxPrice,
     });
   };
+
+  const handleRest = () => {
+    setValues({
+      _minPrice: '',
+      _maxPrice: '',
+    });
+  };
+
   return (
-    <Box>
+    <Box className="root-Filter-price">
       <Typography variant="subtitle2">Giá</Typography>
-      <TextField name="salePrice_gte" value={values.salePrice_gte} onChange={handleChange} />
-      <TextField name="salePrice_lte" value={values.salePrice_lte} onChange={handleChange} />
-      <Button variant="outlined" onClick={handleSubmit}>
-        Áp dụng
-      </Button>
+      <Box className="form-Filter-Price">
+        <TextField
+          size="small"
+          name="_minPrice"
+          value={formatCurrency(values._minPrice)}
+          onChange={handleChange}
+          placeholder="Giá thấp nhất"
+          className="textFieldCustom"
+        />
+        <span>-</span>
+        <TextField
+          size="small"
+          name="_maxPrice"
+          value={formatCurrency(values._maxPrice)}
+          onChange={handleChange}
+          placeholder="Giá cao nhất"
+        />
+      </Box>
+      <Box className="btn-Price">
+        <Button variant="outlined" size="small" onClick={handleSubmit}>
+          Áp dụng
+        </Button>
+        <Button variant="outlined" size="small" onClick={handleRest}>
+          Đặt lại
+        </Button>
+      </Box>
     </Box>
   );
 }

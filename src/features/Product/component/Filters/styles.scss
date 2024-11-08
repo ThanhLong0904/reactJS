@@ -11,3 +11,23 @@
     }
   }
 }
+.root-Filter-price {
+  padding: 16px;
+  border-top: 1px solid #c4c4c4;
+  .form-Filter-Price {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    & input {
+      font-size: 12px; /* Thay đổi font-size cho placeholder */
+    }
+    & span {
+      margin: 0 2px;
+    }
+  }
+  .btn-Price {
+    :first-child {
+      margin-right: 6px;
+    }
+  }
+}

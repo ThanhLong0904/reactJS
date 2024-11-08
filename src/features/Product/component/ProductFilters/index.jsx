@@ -7,7 +7,6 @@ function ProductFilters({ filters, onChange }) {
   const handleCategoryChange = (newCategoryId) => {
     if (!onChange) return;
     const newFilters = {
-      // ...filters,
       _categoryId: newCategoryId,
     };
     onChange(newFilters);

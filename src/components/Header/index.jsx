@@ -63,6 +63,9 @@ export default function Header() {
               ALong SHOP
             </Link>
           </Typography>
+          <NavLink to="/product" className="btnLink">
+            <Button color="inherit">Product</Button>
+          </NavLink>
           <NavLink to="/todos" className="btnLink">
             <Button color="inherit">Todo</Button>
           </NavLink>

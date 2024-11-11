@@ -1,11 +1,11 @@
 import { Box, Container, Grid, Pagination, Paper, Typography } from '@mui/material';
 import productsApi from 'api/productApi';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import ProductSkeletonList from '../component/Skeleton';
-import ProductList from '../component/ProductList';
-import './styles.scss';
-import ProductSort from '../component/ProductSort';
+import { useEffect, useState } from 'react';
 import ProductFilters from '../component/ProductFilters';
+import ProductList from '../component/ProductList';
+import ProductSort from '../component/ProductSort';
+import ProductSkeletonList from '../component/Skeleton';
+import './styles.scss';
 function ListPage() {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);

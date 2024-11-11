@@ -27,6 +27,13 @@ function Product(prop) {
         </Box>
         <Box component={'span'} color={'red'} padding={'0'}>
           {product.promotionPercent > 0 ? `-${product.promotionPercent}%` : ''}
+          {product.FreeShip ? (
+            <Typography className="ship" variant="caption">
+              Free Ship
+            </Typography>
+          ) : (
+            ''
+          )}
         </Box>
       </Typography>
     </Box>

@@ -41,7 +41,9 @@ function FilterByPrice({ onChange }) {
 
   return (
     <Box className="root-Filter-price">
-      <Typography variant="subtitle2">Giá</Typography>
+      <Typography variant="subtitle2" marginBottom={1}>
+        CHỌN KHOẢN GIÁ
+      </Typography>
       <Box className="form-Filter-Price">
         <TextField
           size="small"

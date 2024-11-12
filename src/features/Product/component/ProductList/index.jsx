@@ -1,9 +1,16 @@
-import { Box, Grid, Skeleton } from '@mui/material';
-import React from 'react';
+import { Box, Grid, Skeleton, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import Product from '../Product';
 
 function ProductList(props) {
   const { data = [] } = props;
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    if (isFirstLoad) {
+      setIsFirstLoad(false);
+    }
+  }, []);
   return (
     <Box>
       <Grid container>
@@ -13,6 +20,11 @@ function ProductList(props) {
           </Grid>
         ))}
       </Grid>
+      {data.length === 0 && !isFirstLoad && (
+        <Box className="no-product">
+          <Typography>không có sản phẩm </Typography>
+        </Box>
+      )}
     </Box>
   );
 }

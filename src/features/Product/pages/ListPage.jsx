@@ -17,7 +17,6 @@ function ListPage() {
   const [filters, setfilters] = useState({
     _page: 1,
     _limit: 12,
-    _sortOrder: 'DESC',
   });
   useEffect(() => {
     // lưu ý gọi API phải đặt try catch.
@@ -69,11 +68,6 @@ function ListPage() {
             <Paper elevation={0}>
               <ProductSort currentSort={filters._sortOrder} onChange={handleSortChange} />
               {loading ? <ProductSkeletonList length={12} /> : <ProductList data={productList} />}
-              {productList.length === 0 && (
-                <Box>
-                  <Typography>không có sản phẩm </Typography>
-                </Box>
-              )}
               <Pagination
                 count={Math.ceil(pagination.total / pagination.limit)}
                 page={pagination.page}

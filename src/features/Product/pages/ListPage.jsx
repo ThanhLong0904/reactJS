@@ -6,8 +6,10 @@ import ProductList from '../component/ProductList';
 import ProductSort from '../component/ProductSort';
 import ProductSkeletonList from '../component/Skeleton';
 import './styles.scss';
+import FilterViewer from '../component/Filters/FilterViewer';
 function ListPage() {
   const [productList, setProductList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
     limit: 12,
@@ -61,12 +63,14 @@ function ListPage() {
         <Grid container spacing={1}>
           <Grid item sx={{ width: '250px' }}>
             <Paper elevation={0}>
-              <ProductFilters filters={filters} onChange={handleFiltersChange} />
+              <ProductFilters filters={filters} onChange={handleFiltersChange} getCategoryList={setCategoryList} />
             </Paper>
           </Grid>
           <Grid item sx={{ flex: '1 1 0' }}>
             <Paper elevation={0}>
               <ProductSort currentSort={filters._sortOrder} onChange={handleSortChange} />
+
+              <FilterViewer filters={filters} onChange={handleFiltersChange} categoryList={categoryList} />
               {loading ? <ProductSkeletonList length={12} /> : <ProductList data={productList} />}
               <Pagination
                 count={Math.ceil(pagination.total / pagination.limit)}

@@ -4,7 +4,7 @@ import FilterByCategory from '../Filters/FilterByCategory';
 import FilterByPrice from '../Filters/FilterByPrice';
 import FilterByService from '../Filters/FilterByService';
 
-function ProductFilters({ filters, onChange }) {
+function ProductFilters({ filters, onChange, getCategoryList }) {
   const handleCategoryChange = (newCategoryId) => {
     if (!onChange) return;
     const newFilters = {
@@ -20,7 +20,7 @@ function ProductFilters({ filters, onChange }) {
 
   return (
     <Box>
-      <FilterByCategory onChange={handleCategoryChange} />
+      <FilterByCategory onChange={handleCategoryChange} getCategoryList={getCategoryList} />
       <FilterByPrice onChange={handleChange} />
       <FilterByService filters={filters} onChange={handleChange} />
     </Box>

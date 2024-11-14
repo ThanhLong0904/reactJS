@@ -4,7 +4,7 @@ import categoryApi from 'api/categoryApi';
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
 
-function FilterByCategory({ onChange }) {
+function FilterByCategory({ onChange, getCategoryList }) {
   const [categoryList, setCategoryList] = useState([]);
   useEffect(() => {
     fetchApiCategory();
@@ -14,6 +14,7 @@ function FilterByCategory({ onChange }) {
     try {
       const data = await categoryApi.getAll();
       setCategoryList(data);
+      getCategoryList(data);
     } catch (error) {
       console.log('Failed to fetch category');
     }

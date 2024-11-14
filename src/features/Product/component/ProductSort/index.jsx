@@ -1,6 +1,6 @@
 import { Box, Tab, Tabs } from '@mui/material';
 
-function ProductSort({ currentSort, onChange }) {
+function ProductSort({ currentSort = false, onChange }) {
   const handleSortChange = (event, newValue) => {
     if (onChange) onChange(newValue);
   };

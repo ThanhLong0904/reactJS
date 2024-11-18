@@ -1,13 +1,19 @@
-import { Box, Container, Grid, Pagination, Paper, Typography } from '@mui/material';
+import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
 import productsApi from 'api/productApi';
+import queryString from 'query-string';
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import FilterViewer from '../component/Filters/FilterViewer';
 import ProductFilters from '../component/ProductFilters';
 import ProductList from '../component/ProductList';
 import ProductSort from '../component/ProductSort';
 import ProductSkeletonList from '../component/Skeleton';
 import './styles.scss';
-import FilterViewer from '../component/Filters/FilterViewer';
+
 function ListPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = queryString.parse(location.search);
   const [productList, setProductList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,10 +22,17 @@ function ListPage() {
     page: 1,
     total: 100,
   });
-  const [filters, setfilters] = useState({
-    _page: 1,
-    _limit: 12,
-  });
+  const [filters, setfilters] = useState(() => ({
+    ...queryParams,
+    _limit: queryParams._limit || 10,
+    _page: queryParams._page || 1,
+  }));
+
+  useEffect(() => {
+    const queryParams = queryString.stringify(filters);
+    navigate(`${location.pathname}?${queryParams}`, { replace: false });
+  }, [filters, navigate, location.pathname, location.search]);
+
   useEffect(() => {
     // lưu ý gọi API phải đặt try catch.
     // setTimeout(() => {

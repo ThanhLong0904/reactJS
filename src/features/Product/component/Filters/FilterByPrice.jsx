@@ -1,5 +1,5 @@
 import './styles.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
 function FilterByPrice({ onChange }) {
@@ -7,6 +7,7 @@ function FilterByPrice({ onChange }) {
     _minPrice: '',
     _maxPrice: '',
   });
+  const [isDisabled, setIsdisabled] = useState(true);
 
   const formatCurrency = (value) => {
     if (!value) return '';
@@ -26,6 +27,7 @@ function FilterByPrice({ onChange }) {
 
   const handleSubmit = () => {
     if (!onChange) return;
+
     onChange({
       _minPrice: values._minPrice,
       _maxPrice: values._maxPrice,
@@ -38,6 +40,14 @@ function FilterByPrice({ onChange }) {
       _maxPrice: '',
     });
   };
+
+  useEffect(() => {
+    if (values._minPrice !== '' || values._maxPrice !== '') {
+      setIsdisabled(false);
+    } else {
+      setIsdisabled(true);
+    }
+  }, [values]);
 
   return (
     <Box className="root-Filter-price">
@@ -63,7 +73,7 @@ function FilterByPrice({ onChange }) {
         />
       </Box>
       <Box className="btn-Price">
-        <Button variant="outlined" size="small" onClick={handleSubmit}>
+        <Button variant="outlined" size="small" onClick={handleSubmit} disabled={isDisabled}>
           Áp dụng
         </Button>
         <Button variant="outlined" size="small" onClick={handleRest}>

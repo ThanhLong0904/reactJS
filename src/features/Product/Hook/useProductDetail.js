@@ -1,0 +1,24 @@
+import slotShouldForwardProp from '@mui/material/styles/slotShouldForwardProp';
+import productsApi from 'api/productApi';
+import { useEffect, useState } from 'react';
+
+const useProductDetail = (productId) => {
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const result = await productsApi.get(productId);
+        setProduct(result);
+      } catch (error) {
+        console.log('Failed to fetch product', error);
+      }
+      setLoading(false);
+    })();
+  }, [productId]);
+
+  return { product, loading };
+};
+export default useProductDetail;

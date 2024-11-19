@@ -1,10 +1,24 @@
-.pagination {
-  justify-content: center;
-  display: flex;
-  padding: 20px 0;
+.list-page {
+  .pagination {
+    justify-content: center;
+    display: flex;
+    padding: 20px 0;
+  }
+  .no-product {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+  }
 }
-.no-product {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0 0 0;
+
+.detail-page {
+  .thumbnail {
+    width: 400px;
+    border-right: 1px solid #c4c4c4;
+    padding: 12px;
+  }
+
+  .product-info {
+    padding: 12px;
+  }
 }

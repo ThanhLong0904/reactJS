@@ -1,11 +1,17 @@
 import { Box, Skeleton, Typography } from '@mui/material';
 import React from 'react';
 import './styles.scss';
+import { useNavigate } from 'react-router-dom';
 
 function Product(prop) {
   const { product } = prop;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${product.ProductID}`);
+  };
   return (
-    <Box padding={1}>
+    <Box padding={1} onClick={handleClick}>
       <Box
         padding={1}
         xs={12}

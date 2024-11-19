@@ -24,7 +24,7 @@ function ListPage() {
   });
   const [filters, setfilters] = useState(() => ({
     ...queryParams,
-    _limit: queryParams._limit || 10,
+    _limit: queryParams._limit || 12,
     _page: queryParams._page || 1,
   }));
 
@@ -71,7 +71,7 @@ function ListPage() {
   };
 
   return (
-    <Box>
+    <Box className="list-page">
       <Container>
         <Grid container spacing={1}>
           <Grid item sx={{ width: '250px' }}>

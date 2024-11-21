@@ -1,12 +1,5 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {
-  FormControl,
-  FormHelperText,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from '@mui/material';
+import { Box, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -24,17 +17,12 @@ function PasswordField(props) {
   };
 
   return (
-    <Controller
-      name={name}
-      control={form.control}
-      render={({ field }) => (
-        <FormControl
-          margin="normal"
-          variant="outlined"
-          fullWidth
-          error={hasError}
-        >
-          <InputLabel htmlFor={name}>{label}</InputLabel>
+    <FormControl margin="normal" variant="outlined" fullWidth error={hasError}>
+      <InputLabel htmlFor={name}>{label}</InputLabel>
+      <Controller
+        name={name}
+        control={form.control}
+        render={({ field }) => (
           <OutlinedInput
             {...field}
             id={name}
@@ -43,21 +31,17 @@ function PasswordField(props) {
             label={label}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleShowPassWord}
-                  edge="end"
-                >
+                <IconButton aria-label="toggle password visibility" onClick={handleShowPassWord} edge="end">
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
             disabled={disabled}
           />
-          <FormHelperText>{errors[name]?.message}</FormHelperText>
-        </FormControl>
-      )}
-    />
+        )}
+      />
+      <FormHelperText>{errors[name]?.message}</FormHelperText>
+    </FormControl>
   );
 }
 

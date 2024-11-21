@@ -1,0 +1,30 @@
+.product-info-box {
+  border-bottom: 1px solid #c4c4c4;
+  .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 700px;
+  }
+
+  .price-box {
+    background: #f9f9f9;
+    padding: 12px;
+    margin: 12px 0;
+    & > span {
+      margin: 0 6px 0 0;
+    }
+    .price {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .OriginalPrice {
+      font-weight: bold;
+      text-decoration: line-through;
+    }
+    .promotion-percent {
+      color: red;
+    }
+  }
+}

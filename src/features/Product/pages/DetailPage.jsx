@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ProductInfo from '../component/ProductInfo';
 import ProductThumbnail from '../component/ProductThumbnail';
 import useProductDetail from '../Hook/useProductDetail';
+import AddToCardForm from '../component/AddToCardForm';
 
 function DetailPage() {
   const match = useParams();
@@ -11,7 +12,9 @@ function DetailPage() {
   if (loading) {
     return <Box>loading</Box>;
   }
-
+  const handleAddToCard = (value) => {
+    console.log('handleAddToCard', value);
+  };
   return (
     <Box className="detail-page">
       <Container>
@@ -22,6 +25,7 @@ function DetailPage() {
             </Grid>
             <Grid item className="product-info">
               <ProductInfo product={product} />
+              <AddToCardForm onSubmit={handleAddToCard} />
             </Grid>
           </Grid>
         </Paper>

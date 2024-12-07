@@ -1,8 +1,7 @@
-import { Box, FormControl, FormHelperText, IconButton, InputLabel, OutlinedInput, Typography } from '@mui/material';
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { Box, FormControl, FormHelperText, IconButton, OutlinedInput, Typography } from '@mui/material';
+import { Controller } from 'react-hook-form';
 
 function QuantityField(props) {
   const { name, label, form } = props;
@@ -31,22 +30,24 @@ function QuantityField(props) {
       <Controller
         name={name}
         control={control}
-        render={({ field }) => (
-          <Box display="flex" alignItems="center" maxWidth="150px">
-            <IconButton onClick={handleDecrease}>
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-            <OutlinedInput
-              {...field}
-              id={name}
-              type="number"
-              value={field.value || 0} // Đảm bảo giá trị không bị undefined
-            />
-            <IconButton onClick={handleIncrease}>
-              <AddCircleOutlineIcon />
-            </IconButton>
-          </Box>
-        )}
+        render={({ field }) => {
+          return (
+            <Box display="flex" alignItems="center" maxWidth="150px">
+              <IconButton onClick={handleDecrease}>
+                <RemoveCircleOutlineIcon />
+              </IconButton>
+              <OutlinedInput
+                {...field}
+                id={name}
+                type="number"
+                value={field.value || 0} // Đảm bảo giá trị không bị undefined
+              />
+              <IconButton onClick={handleIncrease}>
+                <AddCircleOutlineIcon />
+              </IconButton>
+            </Box>
+          );
+        }}
       />
       <FormHelperText>{errors[name]?.message}</FormHelperText>
     </FormControl>

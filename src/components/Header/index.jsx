@@ -60,7 +60,7 @@ export default function Header() {
           <CodeIcon sx={{ marginRight: 2 }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/" className="btnLink">
-              ALong SHOP
+              AL SHOP
             </Link>
           </Typography>
           <NavLink to="/product" className="btnLink">
@@ -72,6 +72,7 @@ export default function Header() {
           <NavLink to="/albums" className="btnLink">
             <Button color="inherit">Albums</Button>
           </NavLink>
+
           {!IsLogger ? (
             <Button onClick={handleClickOpen} color="inherit">
               Login

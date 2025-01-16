@@ -40,7 +40,7 @@ function QuantityField(props) {
                 {...field}
                 id={name}
                 type="number"
-                value={field.value || 0} // Đảm bảo giá trị không bị undefined
+                value={field.value || 1} // Đảm bảo giá trị không bị undefined
               />
               <IconButton onClick={handleIncrease}>
                 <AddCircleOutlineIcon />

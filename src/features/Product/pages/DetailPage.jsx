@@ -1,25 +1,33 @@
 import { Box, Container, Grid, Paper } from '@mui/material';
-import { Route, Routes, useMatch, useParams, useResolvedPath } from 'react-router-dom';
+import { addToCart } from 'features/Cart/cartSlice';
+import { useDispatch } from 'react-redux';
+import { Route, Routes, useParams } from 'react-router-dom';
+import AddToCardForm from '../component/AddToCardForm';
+import ProductAdditional from '../component/ProductAdditional';
+import ProductDescription from '../component/ProductDescription';
 import ProductInfo from '../component/ProductInfo';
+import ProductMenu from '../component/ProductMenu';
+import ProductReviews from '../component/ProductReviews';
 import ProductThumbnail from '../component/ProductThumbnail';
 import useProductDetail from '../Hook/useProductDetail';
-import AddToCardForm from '../component/AddToCardForm';
-import ProductMenu from '../component/ProductMenu';
-import ProductDescription from '../component/ProductDescription';
-import ProductAdditional from '../component/ProductAdditional';
-import ProductReviews from '../component/ProductReviews';
-import Header from 'components/Header';
-import Login from 'features/Auth/components/Login';
-import Register from 'features/Auth/components/Register';
 
 function DetailPage() {
   const match = useParams();
   const { product, loading } = useProductDetail(match.productId);
+  const dispatch = useDispatch();
   if (loading) {
     return <Box>loading</Box>;
   }
   const handleAddToCard = (value) => {
-    console.log('handleAddToCard', value);
+    console.log('value1', typeof value.quantity);
+
+    const action = addToCart({
+      id: product.id,
+      product,
+      quantity: Number(value.quantity),
+    });
+    console.log('action', action);
+    dispatch(action);
   };
   return (
     <Box className="detail-page">

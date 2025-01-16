@@ -46,9 +46,7 @@ function ListPage() {
   const handleFilterTodoList = (data) => {
     setFilterStatus(data);
   };
-  const renderTodoList = todoList.filter(
-    (todo) => filterStatus === 'all' || filterStatus === todo.status,
-  );
+  const renderTodoList = todoList.filter((todo) => filterStatus === 'all' || filterStatus === todo.status);
 
   const handleTodoFormSubmit = (values) => {
     const newTodo = {
@@ -70,9 +68,7 @@ function ListPage() {
       <TodoList todoList={renderTodoList} onTodoClick={handleTodoClick} />
 
       <button onClick={() => handleFilterTodoList('all')}>Show All</button>
-      <button onClick={() => handleFilterTodoList('completed')}>
-        Show Completed
-      </button>
+      <button onClick={() => handleFilterTodoList('completed')}>Show Completed</button>
       <button onClick={() => handleFilterTodoList('new')}>Show New</button>
     </div>
   );

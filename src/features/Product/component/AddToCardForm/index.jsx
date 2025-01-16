@@ -17,13 +17,13 @@ function AddToCardForm({ onSubmit }) {
 
   const form = useForm({
     defaultValues: {
-      quantity: '',
+      quantity: 1,
     },
     resolver: yupResolver(schema),
   });
 
   const handleSubmit = (value) => {
-    console.log('handleSubmit', value);
+    onSubmit(value);
   };
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>

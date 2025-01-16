@@ -11,14 +11,10 @@ function TodoForm(props) {
       title: yup
         .string()
         .required('Please enter your full name.')
-        .test(
-          'show has at least two words',
-          'Please enter at least two words',
-          (value) => {
-            console.log(value);
-            return value.split(' ').length >= 2;
-          },
-        ),
+        .test('show has at least two words', 'Please enter at least two words', (value) => {
+          console.log(value);
+          return value.split(' ').length >= 2;
+        }),
     })
     .required();
 

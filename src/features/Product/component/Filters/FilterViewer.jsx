@@ -37,7 +37,7 @@ const FILTER_LIST = [
   {
     id: 3,
     getLabel: (filters, categoryList) => {
-      const newFilter = categoryList.find((x) => x.id === filters._categoryId);
+      const newFilter = categoryList.find((x) => x.id === parseInt(filters._categoryId));
       return newFilter?.name;
     },
     isActive: () => true,
